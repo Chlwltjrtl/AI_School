@@ -1,0 +1,42 @@
+1주차-선형회귀
+집평수에 가격 예측등 (직선의방정식)-> 지도학습 : 문제점 2개?
+regression problem : 실수형태
+리그렉션?: 있다,없다 비교형태 분류? : classification problem(ex 이메일 스팸)
+---
+x= features 데이터의 특징을나타냄(input data)
+---
+y=ax+b
+라고 가정을 할때
+b라는 최적의 가중치값 + a라는 기울기값을
+찾아나가는것
+==> h == hypothesis (가설)
+---chapter2
+어떻게학습하냐?
+cost function == loss function == objective function
+---8page
+학습데이터 table 
+예측값과 실제값의 차이를 최소화 
+총 error 값을 최소화 시키자==> 식이 우측상단 
+x(i)번째 입력값과 y(i)번째 출력값
+---11page
+질문 : 기울기값이 음수 가능? x 
+손실함수는 무조건 >=0 이기에 음수는 불가능
+---12page
+기울기값을 낮춰보면
+---13page
+기울기가 0 
+등등
+cost function에 생김새는 제곱함수?
+---18page
+오른쪽 등고선?
+파란색에 갈수록 낮은 기울기
+--gradient descent
+cost function의 모양이 복잡하게생겼을때 - 24page
+이산에 전체적인 모습에서 가장 낮은 곳에서 두개의 파라미터값을 추출?
+0.3, 0.8 쯤?
+낮은 방향을 찾아서 그곳으로??
+--25page
+근본적인문제
+편미분으로 후레쉬 비추어 내려가는것을 
+--26page
+ 
