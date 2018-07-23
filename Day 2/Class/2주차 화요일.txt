@@ -1,0 +1,69 @@
+linear models for classification
+
+학습 : 데이터에 들어간 특징을 찾는다?,최적의 해법
+-> 1. 데이터분석  2. 유의미한 지식을 추측
+
+내가가진 데이터를 가지고 앞으로 향후 보게 될 데이터의 예측,일반화를 잘시킬려는것이 목적
+overftting 과학습
+
+내가가진 데이터를 복잡,심플하게 표현하는것이 좋은지 생각
+
+mnist 예제로 
+원래라면 있는값을 가지고 비슷하냐 비교하는것, 하지만 다양한 데이터셋때문에 x
+많은 데이터를 보고 일반적인 rule 을 뽑아야됨
+'training set, {x1~xn} 문자가 볼드로적혀있다 : 백터 , 대문자 : ?
+판별할 데이터 target vector
+기계학습은 여기서 판별할 데이터를 받고 출력할 함수를 만들어 내가 원하는값과 같은것인지
+판별
+
+x -> f(x;세타) -> y
+
+가장 비슷한 함수를 찾는다. 
+
+ex) 함수가 어떻게 가지냐에 따라 -> 추측)신경망?
+-> bayes classifiter, convolutional neural network ,support vector machine ,gaussian mixture model ,hidden markov model
+
+*일반화가 잘됬느냐 
+
+--------------
+feature extraction/Representation
+1. x값 즉 데이터를 변형할꺼냐?
+ex) 28*28 백터에서 늘리거나 줄이기 등?
+2. 계산량을 줄인다.
+3. 불필요한 값을 걸러낸다.
+
+training session 5step
+데이터를모은다
+1.preprocessing 전처리
+2.feature extraction/representation 특징을뽑아낸다.(일부)
+3.feature selection
+4.classifier / regressor learning 학습
+
+-> testing session
+1. given testing samples 테스트용 데이터
+2. preprocessing 
+3. feature extraction/representation
+4. feature selection
+5. outputs form classifier / regressor
+
+나중에 3~5 -> 동시에 최적화 하는방법이있다.
+
+ML general learning scheme
+x = > f(x|세타) -> y
+1. model: 함수 -> enough capacity ex)1차원보다 2차원 함수(왜? 2차원은 1차원을 표현가능)->problem 파라미터값이 늘어남
+2. loss fnction : J(세타|X) = 시그마nL(yn f(xn|0) -> sufficient training data 
+내가원하는 target 과 얼마나 유사하냐 -> x-y, 기준정하기 + 또다른함수가 기준에 가장 적합한걸 찾기
+3. learning 세타*= argmin 0 J(세타|X) -> good optimization method
+최적화?
+
+어디를 공부하고있는지 알고있어야함
+
+----------------------------------
+supervised learning  지도학습
+-> 실수값이냐 , classification 이냐
+unsupervised learning 비지도학습
+-> clusterning 데이터가 비슷한 얘들끼리 군집화(기준이있어야함), density estimation(분포)
+visualization (3차원 제한 , 시각화)
+reinforcement learning 강화학습
+-> situation 이 들어감 (다른점) 즉 컴퓨터 action 에 들어가는 states 가 포함된다.상황을 고려하는 능력, reward 값을 저장-> win : supervised , 나중에가서 저장되는 보상을받는 lost function 이 지정됨
+ 

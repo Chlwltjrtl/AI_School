@@ -1,0 +1,125 @@
+Linear Classification Models
+
+파라미터값이 1개면 linear?
+y=w*x , 모든w 에대한 1차식 ->선형모델
+
+disjoint classes -> 하나에 데이터에만 속한다[0~9] 
+input space : divided into decision regions 28*28 차원을 조각낸다. -> 3차원은 평면 4차원은 초평면
+	D-1 dimensional hyperplane within D dimensinal input spaace
+
+Linearly separable 선형적으로 데이터 분류가 가능하다. 
+
+
+-
+Two class (K=2): binary representation(classfication)
+x - > f(x;0) -> y
+	t =>포함 1(C1)+-1(C2)
+	t =>포함 1(C1),0(C2) 확률 ? probability
+one hot vector 
+	0.2
+-> {    0.7   } -> Cn
+	0.5
+For K>2: 1-of-K coding scheme
+
+---
+discriminant function 함수로 학습
+
+probabilistic models 확률
+-> model p(Ck|x) in inference stage 확률로 학습
+	->Generative 데이터를 만들어낼수 잇음, Discriminative x가 주어졌을때 Ck 확률이 뭐냐?를알수잇음
+---
+Discriminant Functions
+
+y(x) = W ^T x + W0
+다른조건 x -> 모든실수
+이진분류 -> 양수 음수
+if y(x) >=0 양수인경우 C2 할당
+
+공간을 나누어 양수 음수 판별?
+
+1. one versus rest  1번클래스가 맞냐? ~.... 대신 이런 case는 결정할수 없는 공간이 나옴
+	1:N  (K-1 classifiers)
+2. one versus one 한개씩비교 , 3개의 선이 한개점에서 만나지않으면 남는 부분 결정x
+	1:1 (K(K-1)/2 classifiers)-> 앞에서본 r||W|| 거리를 이용하면됨
+좋은 방법은 아니다. 경우를 안생기는 case 가 좋음
+
+안생기게할려면
+각각의 class 에대하여 discriminant 를 만듬
+출력값으로 비교했을때 어떤 class에 가장 적절하냐 판별 가능 
+
+Convexity of Decision Regions 한점에서만남
+증명
+
+학습과정 방법
+1.Least Squares
+2. Fisher's Linear Discriminant
+3. Perceptrons -> 뉴럴 네트워크랑 
+
+--
+13page
+Least Squares
+출력값과 one hot vector 를 비교 loss function 을 가장 적게
+
+최소값 -> 내가찾으려는값을 기준으로 미분한값이 0이면 = 최대 or 최소값을 가진다.
+전역 최적해 : 유전 알고리즘
+
+매트릭스 쿡 북? 수식 모음 pdf 파일
+
+y(x) = W^T x = T^T(X^T)^T * x -> x는 가중치 (결국 가지고있는 데이터)
+
+Least squares 에러 -> 데이터 추가를 이상한 곳에 추가하면 (이상치)
+loss function 이 값에대한 거리를 적게할려고 하기 때문에 
+
+--> 쓰면안된다(가우시안, 정규분포랑 관련되어있음)
+
+-----
+퍼셉트론 (유사 뉴런, 자극 이들어오면 각각의 가중치를 sum 하고 계단함수보다 크냐 작으냐에따라 y값 출력,계속해서 만들면 시냅스?, 그걸쌓으면 뉴럴 네트워크)
+y(x) = f(w^T x + w0) where f(a) = { +1 -> a>=0 || -1 -> a<0
+계단함수처럼 시각화 됨
+==
+퍼셉트론에서 맞았냐 틀렸냐를 봤음
+틀리면 수정하는 수식17page Criterion
+-> 에러를 줄여라 ! == 그레디언트 디센트를 적용하면됨
+
+데이터를 하나 추가하면 또학습 , online update ML
+
+퍼셉트론 :: 내가 가진데이터를 선형으로 분류가 가능하면 100프로를 보장
+--------------------
+classification -> r||W|| r의 값으로 양,음수판별가능
+--------------------
+계단함수대신에 f(x)값을 다른함수를 쓴다면?-> logic-> sigmoid (활성화 함수 activation function)
+
+분류하는데 있어서 decision surfaces에 있어서 => constant 결국 상수가 정해짐
+y(x)= f(w^T x + w0 ) -> 고정된 상수에 함수를 씌여도 똑같다.
+한번더 처리하는것을 일반화된 선형 모델이라고 한다. generalized linear model
+
+비선형 모델 사용- > 입력값이 커짐에따라 출력값이 작아지거나 커지는것처럼 일정하는것이 아닌
+
+이진분류 ; 어떤 x가 주어질때 P(C1|x) = 1/1+exp(-a) = 시그마 of a(a)
+
+logistic sigmoid의 특성
+-> 0~ 1 값 binary 에서 자주사용
+
+2~3개 이상 을 할땐 Softmax Function (K > 2 ) 반례(K=2 binary 에서 사용가능)
+-> where ak= In p(x|Ck)P(Ck)
+값들을 정규화시켜 softmax라 부름
+
+===>> target 에 따라 뭘쓸지 정해야됨
+
+
+(Two-Class)logistic Regression (클래스가 2개인경우 binary일때 사용)
+공집함= x
+P(C1|x) = y(x) = 시그마 of a(W^T x) / P(C2|x) = 1 - P(C1|x)
+기준값 이상 이하일때 분류
+
+[Determining Parameters of Logistic  Regression]
+-> p(전체타겟|w) = IIyn{1-yn}^(1-tn)--> 최대화하는 w를 찾고싶다. = log
+------>cross-entropy error function
+w가 tnInyn < yn 에 들어가있어서 미분후 미분?
+오른쪽 53page 최종값보면
+(퍼셉트론에서 나옴) (yn-tn)xn 시그마
+얼마나 틀렸는지 확인
+----------------------------
+Multiclass Logistic Regression -> 주사위던지기 (앞내용은 동전던지기)
+백터로 표현
+
