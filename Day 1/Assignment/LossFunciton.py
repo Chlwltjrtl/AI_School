@@ -1,3 +1,4 @@
+# using data.png
 # 실습에 필요한 라이브러리를 불러옵니다.
 import matplotlib as mpl
 
