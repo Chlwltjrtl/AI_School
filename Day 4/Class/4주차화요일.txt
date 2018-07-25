@@ -1,0 +1,49 @@
+Model Selection
+
+
+-Croos Validation-
+overftting 해결 컨셉중 하나
+training data , test data 로 나누는데
+test data는 한번만 검증? -> 그후 결과값으로 바뀜
+
+training dat를
+pseudo training , pseudo test로 나눔
+
+LOOCV
+-> sample 이 많아지면 별루
+
+k - fold cross validation
+평균적으로 사용함 K개로 균등하게 나눠서 사용
+평가하는게 주요 목적
+classfication 문제일때 k=3~5? 종도고
+Regression 문제는 k=10 종도 씀
+
+PCA
+
+-Feature selection-
+Best subset selection = 그닥 알필요 X 변수가 늘어날수록 overfitting 이늘어남
+모든 k 수를 다해봐서 가장좋은거를 사용하는거임 , 계산량이많아서 별로
+대신 
+Stepwise Selcetion을 자주 사용
+1.Foward stepwises selection
+2.backward stepwises selection
+
+모델을 줄이는방법? feature selection???
+
+-Regularization-
+정규화
+Ridge regression : 축소 패널티 np.sum(B^2)
+왜 베타제곱? 절대값도 되잖아 -> 옛날에는 솔류션을 계산하려면 미분을 해야되는데 그래서 함
+
+-> 지금은 컴퓨터도 계산이되기때문에 절대값 O = Lasso Regreesion
+
+번외 딥러닝에서 노드를 없애는거? (랜덤으로 -> Lasso 효과를 얻음)
+
+왜 릿지는 0으로안가는데 라소는 0으로 가냐
+동그라미와 네모의 차이
+
+
+
+
+
+http://gnujoow.github.io/ml/2016/01/30/ML4-Regularization/
