@@ -8,6 +8,7 @@ import numpy as np
 
 
 # x, y, beta_0, beta_1 을 이용해 loss 값을 계산합니다.
+# 밑 코드가 과제입니다. 지우고 해보시길 바랍니다.
 def loss(x, y, beta_0, beta_1):
     N = len(x)
     y = np.array(y)
